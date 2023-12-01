@@ -18,14 +18,15 @@ module Types
       ids.map { |id| context.schema.object_from_id(id, context) }
     end
 
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :word, Types::WordType, null: true, description: "Fetches a word by its string." do
+      argument :str, String, required: true, description: "String of the word."
+    end
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    def word(str:)
+      word = Word.find_by(str: str.downcase)
+
+      return nil if word&.unauthorized? && !context[:current_admin]
+      word
     end
   end
 end

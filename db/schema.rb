@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_01_184341) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_01_185439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_184341) do
   create_table "synonyms", force: :cascade do |t|
     t.bigint "word_id", null: false
     t.string "synonym"
-    t.integer "authorization_status"
+    t.integer "authorization_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["word_id"], name: "index_synonyms_on_word_id"

@@ -1,6 +1,10 @@
 FactoryBot.define do
   factory :word do
-    str { "MyString" }
-    authorization_status { 1 }
+    str { 'example' }
+  end
+
+  factory :synonym do
+    association :word, factory: :word
+    synonym { 'similar' }
   end
 end
